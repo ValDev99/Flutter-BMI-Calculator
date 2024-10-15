@@ -129,80 +129,82 @@ class _BMIForm extends State<BodyMassIndex> {
                 height: 20,
               ),
 
-                SfRadialGauge(
-                  axes: <RadialAxis>[
-                    RadialAxis(
-                      minimum: 14,
-                      maximum: 40,
-                      ranges: <GaugeRange>[
-                        GaugeRange(
-                          startValue: 14,
-                          endValue: 18.5,
-                          color: Colors.green.shade100,
-                          label: 'Underweight', // Add range label here
-                          labelStyle: const GaugeTextStyle(
-                            color: Colors.black,
-                            fontSize: 12,
-                          ),
-                          startWidth: 20,
-                          endWidth: 20,
+              bmi != null
+                  ? SfRadialGauge(
+                axes: <RadialAxis>[
+                  RadialAxis(
+                    minimum: 14,
+                    maximum: 40,
+                    ranges: <GaugeRange>[
+                      GaugeRange(
+                        startValue: 14,
+                        endValue: 18.5,
+                        color: Colors.green.shade100,
+                        label: 'Underweight',
+                        labelStyle: const GaugeTextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
                         ),
-                        GaugeRange(
-                          startValue: 18.5,
-                          endValue: 24.9,
-                          color: Colors.green,
-                          label: 'Normal', // Add another range label here
-                          labelStyle: const GaugeTextStyle(
-                            color: Colors.black,
-                            fontSize: 12,
-                          ),
-                          startWidth: 20,
-                          endWidth: 20,
+                        startWidth: 20,
+                        endWidth: 20,
+                      ),
+                      GaugeRange(
+                        startValue: 18.5,
+                        endValue: 24.9,
+                        color: Colors.green,
+                        label: 'Normal',
+                        labelStyle: const GaugeTextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
                         ),
-                        GaugeRange(
-                          startValue: 25,
-                          endValue: 29.9,
-                          color: Colors.orange,
-                          label: 'Overweight', // Add another range label here
-                          labelStyle: const GaugeTextStyle(
-                            color: Colors.black,
-                            fontSize: 12,
-                          ),
-                          startWidth: 20,
-                          endWidth: 20,
+                        startWidth: 20,
+                        endWidth: 20,
+                      ),
+                      GaugeRange(
+                        startValue: 25,
+                        endValue: 29.9,
+                        color: Colors.orange,
+                        label: 'Overweight',
+                        labelStyle: const GaugeTextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
                         ),
-                        GaugeRange(
-                          startValue: 30,
-                          endValue: 40,
-                          color: Colors.red,
-                          label: 'Obesity', // Add another range label here
-                          labelStyle: const GaugeTextStyle(
-                            color: Colors.black,
-                            fontSize: 12,
-                          ),
-                          startWidth: 20,
-                          endWidth: 20,
+                        startWidth: 20,
+                        endWidth: 20,
+                      ),
+                      GaugeRange(
+                        startValue: 30,
+                        endValue: 40,
+                        color: Colors.red,
+                        label: 'Obesity',
+                        labelStyle: const GaugeTextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
                         ),
-                      ],
-                      pointers: const <GaugePointer>[
-                        NeedlePointer(value: 60),
-                      ],
-                      annotations: const <GaugeAnnotation>[
-                        GaugeAnnotation(
-                          widget: Text(
-                            'BMI',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
+                        startWidth: 20,
+                        endWidth: 20,
+                      ),
+                    ],
+                    pointers: <GaugePointer>[
+                      NeedlePointer(value: bmi ?? 0), // Utilisation du BMI calculé ici
+                    ],
+                    annotations: <GaugeAnnotation>[
+                      GaugeAnnotation(
+                        widget: Text(
+                          'BMI: ${bmi!.toStringAsFixed(1)}',
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
                           ),
-                          angle: 90,
-                          positionFactor: 0.5,
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                        angle: 90,
+                        positionFactor: 0.5,
+                      ),
+                    ],
+                  ),
+                ],
+              )
+                  : const Text('Please enter your data to calculate BMI'),
               ],
           ),
         )
